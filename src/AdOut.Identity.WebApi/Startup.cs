@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace AdOut.Identity.WebApi
 {
@@ -25,6 +18,14 @@ namespace AdOut.Identity.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            var identityServerBuilder = services.AddIdentityServer()
+                .AddInMemoryIdentityResources(IdentityServerConfig.Ids)
+                .AddInMemoryApiResources(IdentityServerConfig.Apis)
+                .AddInMemoryClients(IdentityServerConfig.Clients)
+                .AddTestUsers(TestUsers.Users);
+
+            identityServerBuilder.AddDeveloperSigningCredential();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -35,9 +36,9 @@ namespace AdOut.Identity.WebApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
