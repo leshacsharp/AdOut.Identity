@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AdOut.Identity.Core\AdOut.Identity.Core.csproj" />
+    <ProjectReference Include="..\AdOut.Identity.DataProvider\AdOut.Identity.DataProvider.csproj" />
     <ProjectReference Include="..\AdOut.Identity.Model\AdOut.Identity.Model.csproj" />
   </ItemGroup>
 

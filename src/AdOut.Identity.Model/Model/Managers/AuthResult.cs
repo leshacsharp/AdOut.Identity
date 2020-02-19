@@ -14,7 +14,7 @@ namespace AdOut.Identity.Model.Model.Managers
 
         public List<string> Errors { get; set; }
 
-        public RegistrationResult()
+        public AuthResult()
         {
             Errors = new List<string>();
         }
