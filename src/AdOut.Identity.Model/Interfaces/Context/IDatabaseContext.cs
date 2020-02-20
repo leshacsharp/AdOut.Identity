@@ -9,6 +9,7 @@ namespace AdOut.Identity.Model.Interfaces.Context
         DbSet<User> Users { get; set; }
         DbSet<Role> Roles { get; set; }
         DbSet<Permission> Permissions { get; set; }
+        DbSet<RolePermission> RolePermissions { get; set; }
 
         DbSet<IdentityUserClaim<string>> UserClaims { get; set; }
         DbSet<IdentityUserLogin<string>> UserLogins { get; set; }
