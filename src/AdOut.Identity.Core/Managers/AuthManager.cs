@@ -51,10 +51,11 @@ namespace AdOut.Identity.Core.Managers
                 return authResult;
             }
 
+            //todo: replace registrationModel.Role to Enum
             var roleExists = await _roleManager.RoleExistsAsync(registrationModel.Role);
             if(!roleExists)
             {
-                throw new ArgumentException($"Role={registrationModel.Role} is not exists");
+                throw new ArgumentException($"Role={registrationModel.Role} does not exists");
             }
 
             var addingRoleResult = await _userManager.AddToRoleAsync(newUser, registrationModel.Role);

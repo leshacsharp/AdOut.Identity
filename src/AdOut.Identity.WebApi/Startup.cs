@@ -73,7 +73,6 @@ namespace AdOut.Identity.WebApi
             app.UseSwaggerUI(setup =>
             {
                 setup.SwaggerEndpoint("/swagger/v1/swagger.json", "AdOut.Identity API V1");
-              //  setup.RoutePrefix = string.Empty;
             });
 
             app.UseMvc(routes =>
