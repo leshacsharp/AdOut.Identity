@@ -42,7 +42,7 @@ namespace AdOut.Identity.Core.Managers
                 UserName = registrationModel.UserName,
                 Email = registrationModel.Email
             };
-
+    
             var creatingUserResult = await _userManager.CreateAsync(newUser, registrationModel.Password);
             if(!creatingUserResult.Succeeded)
             {

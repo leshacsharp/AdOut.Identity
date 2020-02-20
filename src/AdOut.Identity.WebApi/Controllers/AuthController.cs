@@ -13,10 +13,13 @@ namespace AdOut.Identity.WebApi.Controllers
             _authManager = authManager;
         }
 
+        //IdentitySystem IdentityProcess IdentityLogic
+
         [HttpGet]
-        public IActionResult LogIn()
+        public IActionResult LogIn(string returnUrl)
         {
-            return View();
+            var logInModel = new LogInModel() { ReturnUrl = returnUrl };
+            return View(logInModel);
         }
 
         [HttpPost]
