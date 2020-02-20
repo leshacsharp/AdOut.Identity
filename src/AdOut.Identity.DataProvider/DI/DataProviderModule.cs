@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AdOut.Identity.DataProvider.Context;
+using AdOut.Identity.DataProvider.Repositories;
+using AdOut.Identity.Model.Interfaces.Context;
+using AdOut.Identity.Model.Interfaces.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdOut.Identity.DataProvider.DI
 {
@@ -6,7 +10,9 @@ namespace AdOut.Identity.DataProvider.DI
     {
         public static void AddDataProviderModule(this IServiceCollection services)
         {
+            services.AddScoped<IDatabaseSeeder, IdentitySeeder>();
 
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
         }
     }
 }
