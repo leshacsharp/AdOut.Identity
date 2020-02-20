@@ -13,11 +13,7 @@ namespace AdOut.Identity.Model.Api
         [MinLength(6)]
         public string Password { get; set; }
 
-        [Required]
-        [Compare(nameof(Password))]
-        public string ComparedPassword { get; set; }
-
-        //todo: probable need to change than on Enum
+        //todo: probable need to change that on Enum
         public string Role { get; set; }
 
         public string Email { get; set; }

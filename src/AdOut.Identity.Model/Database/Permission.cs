@@ -14,6 +14,6 @@ namespace AdOut.Identity.Model.Database
         [StringLength(maximumLength:15, MinimumLength=3)]
         public string Name { get; set; }
 
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<RolePermission> Roles { get; set; }
     }
 }

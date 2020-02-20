@@ -5,6 +5,6 @@ namespace AdOut.Identity.Model.Database
 {
     public class Role : IdentityRole
     {
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual ICollection<RolePermission> Permissions { get; set; }
     }
 }

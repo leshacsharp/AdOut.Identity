@@ -10,9 +10,17 @@ namespace AdOut.Identity.DataProvider.Context
         public IdentityContext(DbContextOptions<IdentityContext> dbContextOptions)
             : base(dbContextOptions)
         {
-            
+            Database.EnsureCreated();
         }
 
         public DbSet<Permission> Permissions { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<RolePermission>()
+                   .HasKey(table => new { table.RoleId, table.PermissionId });
+        }
     }
 }
