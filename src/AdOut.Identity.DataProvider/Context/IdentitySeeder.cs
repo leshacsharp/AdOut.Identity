@@ -10,6 +10,13 @@ namespace AdOut.Identity.DataProvider.Context
     {
         public void Seed(ModelBuilder builder)
         {
+            var testPermission = new Permission()
+            {
+                Id = 1,
+                Name = "test permission"
+            };
+            builder.Entity<Permission>().HasData(testPermission);
+
             var adminRole = new Role()
             {
                 Id = "b1419175-af91-4dff-ba78-13201d7538f4",
@@ -17,6 +24,13 @@ namespace AdOut.Identity.DataProvider.Context
                 NormalizedName = "admin".ToUpper()
             };
             builder.Entity<Role>().HasData(adminRole);
+
+            var adminRolePermissions = new RolePermission()
+            {
+                RoleId = adminRole.Id,
+                PermissionId = testPermission.Id
+            };
+            builder.Entity<RolePermission>().HasData(adminRolePermissions);
 
             var hasher = new PasswordHasher<User>();
             var adminUser = new User()
@@ -33,11 +47,12 @@ namespace AdOut.Identity.DataProvider.Context
             };
             builder.Entity<User>().HasData(adminUser);
 
-            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>()
+            var adminUserRole = new IdentityUserRole<string>()
             {
                 UserId = adminUser.Id,
                 RoleId = adminRole.Id
-            });
+            };
+            builder.Entity<IdentityUserRole<string>>().HasData(adminUserRole);
         }
     }
 }
