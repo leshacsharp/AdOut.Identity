@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using AdOut.Identity.WebApi.Claims;
+using IdentityServer4.Services;
 
 namespace AdOut.Identity.WebApi
 {
@@ -38,7 +40,6 @@ namespace AdOut.Identity.WebApi
             })
             .AddEntityFrameworkStores<IdentityContext>();
            
-
             services.AddDataProviderModule();
             services.AddCoreModule();
 
@@ -46,7 +47,8 @@ namespace AdOut.Identity.WebApi
                 .AddInMemoryIdentityResources(IdentityServerConfig.Ids)
                 .AddInMemoryApiResources(IdentityServerConfig.Apis)
                 .AddInMemoryClients(IdentityServerConfig.Clients)
-                .AddAspNetIdentity<User>();
+                .AddAspNetIdentity<User>()
+                .AddProfileService<ProfileService>();
 
             identityServerBuilder.AddDeveloperSigningCredential();
 
