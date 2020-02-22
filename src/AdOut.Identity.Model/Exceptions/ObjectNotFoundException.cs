@@ -6,7 +6,6 @@ namespace AdOut.Identity.Model.Exceptions
     {
         public ObjectNotFoundException(string message) : base(message)
         {
-
         }
     }
 }
