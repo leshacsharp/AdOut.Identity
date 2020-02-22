@@ -20,7 +20,7 @@ namespace AdOut.Identity.WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(AuthResult), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(AuthResult), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register(RegistrationModel registrationModel)
         {

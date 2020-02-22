@@ -17,11 +17,12 @@ namespace AdOut.Identity.DataProvider.Context
             };
             builder.Entity<Permission>().HasData(testPermission);
 
+            var adminRoleName = Enum.GetName(typeof(Model.Enums.Role), Model.Enums.Role.Admin);
             var adminRole = new Role()
             {
                 Id = "b1419175-af91-4dff-ba78-13201d7538f4",
-                Name = "admin",
-                NormalizedName = "admin".ToUpper()
+                Name = adminRoleName,
+                NormalizedName = adminRoleName.ToUpper()
             };
             builder.Entity<Role>().HasData(adminRole);
 

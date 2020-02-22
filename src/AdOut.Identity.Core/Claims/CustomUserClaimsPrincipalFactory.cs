@@ -1,4 +1,5 @@
-﻿using AdOut.Identity.Model.Database;
+﻿using AdOut.Identity.Model;
+using AdOut.Identity.Model.Database;
 using AdOut.Identity.Model.Interfaces.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -30,9 +31,8 @@ namespace AdOut.Identity.Core.Claims
             var claimsPrinciple = await base.CreateAsync(user);
             var claimsIdentity = (ClaimsIdentity)claimsPrinciple.Identity;
 
-            //todo: replace "permission" value to Constant
             var permissions = await _permissionRepository.GetByUserAsync(user.Id);
-            var permissionClaims = permissions.Select(p => new Claim("permission", p));
+            var permissionClaims = permissions.Select(p => new Claim(Constants.ClaimsTypes.Permission, p));
 
             claimsIdentity.AddClaims(permissionClaims);
 

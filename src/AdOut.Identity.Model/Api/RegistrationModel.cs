@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdOut.Identity.Model.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace AdOut.Identity.Model.Api
 {
@@ -13,8 +14,7 @@ namespace AdOut.Identity.Model.Api
         [MinLength(6)]
         public string Password { get; set; }
 
-        //todo: probable need to change that on Enum
-        public string Role { get; set; }
+        public Role Role { get; set; }
 
         public string Email { get; set; }
     }

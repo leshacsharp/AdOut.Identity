@@ -1,5 +1,6 @@
 ﻿using AdOut.Identity.Model.Database;
 using AdOut.Identity.Model.Exceptions;
+using AdOut.Identity.Model.Interfaces.Managers;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -12,10 +13,10 @@ namespace AdOut.Identity.WebApi.Claims
 {
     public class ProfileService : IProfileService
     {
-        private readonly UserManager<User> _userManager;
+        private readonly IUserManager _userManager;
         private readonly IUserClaimsPrincipalFactory<User> _userClaimsFactory;
 
-        public ProfileService(UserManager<User> userManager, IUserClaimsPrincipalFactory<User> userClaimsFactory)
+        public ProfileService(IUserManager userManager, IUserClaimsPrincipalFactory<User> userClaimsFactory)
         {
             _userManager = userManager;
             _userClaimsFactory = userClaimsFactory;

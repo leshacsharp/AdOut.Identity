@@ -13,6 +13,7 @@ namespace AdOut.Identity.Core.DI
         {
             services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomUserClaimsPrincipalFactory>();
 
+            services.AddScoped<IUserManager, UserManager>();    
             services.AddScoped<IAuthManager, AuthManager>();
         }
     }
