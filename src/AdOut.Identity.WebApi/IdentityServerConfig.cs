@@ -1,23 +1,24 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System.Collections.Generic;
+using static AdOut.Identity.Model.Constants;
 
 namespace AdOut.Identity.WebApi
 {
     public static class IdentityServerConfig
     {
-        //todo: replace strings to Constants
         public static IEnumerable<IdentityResource> Ids =>
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResource("permission", new List<string>() { "permission" })
+                new IdentityResource(ClaimsTypes.Permission, new List<string>() { ClaimsTypes.Permission })
             };
 
         public static IEnumerable<ApiResource> Apis =>
         new List<ApiResource>
         {
-
+            
         };
 
         public static IEnumerable<Client> Clients =>
@@ -33,7 +34,12 @@ namespace AdOut.Identity.WebApi
                 {
                     new Secret("secret".Sha256())
                 },
-                AllowedScopes = { "openid", "profile", "permission"},
+                AllowedScopes = 
+                {
+                     IdentityServerConstants.StandardScopes.OpenId,
+                     IdentityServerConstants.StandardScopes.Profile,
+                     ClaimsTypes.Permission
+                },
                 AlwaysIncludeUserClaimsInIdToken = true,
                 RedirectUris = { "http://localhost:5001/signin-oidc" }
             },
