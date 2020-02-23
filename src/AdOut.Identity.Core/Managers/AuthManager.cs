@@ -50,7 +50,7 @@ namespace AdOut.Identity.Core.Managers
                 return authResult;
             }
 
-            var roleName = Enum.GetName(typeof(Model.Enums.Role), registrationModel.Role);
+            var roleName = registrationModel.Role.ToString();
             var addingRoleResult = await _userManager.AddToRoleAsync(newUser, roleName);
             if(!addingRoleResult.Succeeded)
             {

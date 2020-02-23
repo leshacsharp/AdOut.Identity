@@ -7,7 +7,7 @@ namespace AdOut.Identity.Model.Interfaces.Managers
     {
         Task<User> FindByIdAsync(string userId);
         Task<User> FindByNameAsync(string userName);
-        Task AddRoleAsync(string userId, Enums.Role role);
-        Task RemoveRoleAsync(string userId, Enums.Role role);
+        Task AddRoleAsync(string fromUserId, string touUserId, Enums.Role addedRole);
+        Task RemoveRoleAsync(string fromUserId, string touUserId, Enums.Role removedRole);
     }
 }

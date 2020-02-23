@@ -19,19 +19,19 @@ namespace AdOut.Identity.WebApi.Controllers
         [HttpPost]
         [Route("add-role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> AddRole(string userId, Role role)
+        public async Task<IActionResult> AddRole(string fromUserId, string toUserId, Role role)
         {
-            await _userManager.AddRoleAsync(userId, role);
+            await _userManager.AddRoleAsync(fromUserId, toUserId, role);
             return NoContent();
         }
 
         [HttpDelete]
         [Route("remove-role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> RemoveRole(string userId, Role role)
+        public async Task<IActionResult> RemoveRole(string fromUserId, string toUserId, Role role)
         {
-            await _userManager.RemoveRoleAsync(userId, role);
-            return NoContent();
+            await _userManager.RemoveRoleAsync(fromUserId, toUserId, role);
+            return NoContent(); 
         }
     }
 }

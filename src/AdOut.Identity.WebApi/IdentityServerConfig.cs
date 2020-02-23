@@ -12,7 +12,11 @@ namespace AdOut.Identity.WebApi
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResource(ClaimsTypes.Permission, new List<string>() { ClaimsTypes.Permission })
+                new IdentityResource(IdentityResourcesNames.Postition, new List<string>() 
+                {
+                    ClaimsTypes.Role,
+                    ClaimsTypes.Permission
+                })
             };
 
         public static IEnumerable<ApiResource> Apis =>
@@ -38,7 +42,7 @@ namespace AdOut.Identity.WebApi
                 {
                      IdentityServerConstants.StandardScopes.OpenId,
                      IdentityServerConstants.StandardScopes.Profile,
-                     ClaimsTypes.Permission
+                     IdentityResourcesNames.Postition
                 },
                 AlwaysIncludeUserClaimsInIdToken = true,
                 RedirectUris = { "http://localhost:5001/signin-oidc" }
