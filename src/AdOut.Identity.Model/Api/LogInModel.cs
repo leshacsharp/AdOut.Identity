@@ -5,6 +5,7 @@ namespace AdOut.Identity.Model.Api
     public class LogInModel
     {
         [Required]
+        [Display(Name = "User name")]
         public string UserName { get; set; }
         
         [Required]

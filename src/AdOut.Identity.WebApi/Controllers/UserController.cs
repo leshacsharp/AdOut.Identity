@@ -19,6 +19,7 @@ namespace AdOut.Identity.WebApi.Controllers
         [HttpPost]
         [Route("add-role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> AddRole(string fromUserId, string toUserId, Role role)
         {
             await _userManager.AddRoleAsync(fromUserId, toUserId, role);
@@ -28,6 +29,7 @@ namespace AdOut.Identity.WebApi.Controllers
         [HttpDelete]
         [Route("remove-role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> RemoveRole(string fromUserId, string toUserId, Role role)
         {
             await _userManager.RemoveRoleAsync(fromUserId, toUserId, role);

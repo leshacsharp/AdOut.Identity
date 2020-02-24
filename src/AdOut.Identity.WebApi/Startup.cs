@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using AdOut.Identity.WebApi.Claims;
+using AdOut.Identity.WebApi.Filters;
 
 namespace AdOut.Identity.WebApi
 {
@@ -24,7 +25,11 @@ namespace AdOut.Identity.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddMvc(options => 
+            {
+                options.EnableEndpointRouting = false;
+                options.Filters.Add(typeof(ExceptionFilterAttribute));
+            });
             services.AddControllers();
             
             //todo: make Different connections for dev and prod configurations
