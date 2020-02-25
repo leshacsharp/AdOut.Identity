@@ -19,7 +19,7 @@ namespace AdOut.Identity.Core.Managers
         public void Create(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(entity)} cannot be null");
+                throw new ArgumentNullException(nameof(entity));
 
             _repository.Create(entity);
         }
@@ -27,7 +27,7 @@ namespace AdOut.Identity.Core.Managers
         public void Delete(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(entity)} cannot be null");
+                throw new ArgumentNullException(nameof(entity));
 
             _repository.Delete(entity);
         }
@@ -40,7 +40,7 @@ namespace AdOut.Identity.Core.Managers
         public void Update(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(entity)} cannot be null");
+                throw new ArgumentNullException(nameof(entity));
 
             _repository.Update(entity);
         }
