@@ -1,12 +1,12 @@
 ﻿using AdOut.Identity.Model.Database;
 using AdOut.Identity.Model.Interfaces.Managers;
-using AdOut.Identity.Model.Model.Managers;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
 using AdOut.Identity.Model.Api;
 using static AdOut.Identity.Model.Constants;
+using AdOut.Identity.Model.Classes;
 
 namespace AdOut.Identity.Core.Managers
 {

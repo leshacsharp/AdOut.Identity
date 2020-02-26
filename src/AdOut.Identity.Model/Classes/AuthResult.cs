@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdOut.Identity.Model.Model.Managers
+namespace AdOut.Identity.Model.Classes
 {
     public class AuthResult
     {
@@ -8,7 +8,7 @@ namespace AdOut.Identity.Model.Model.Managers
         {
             get
             {
-                return Errors.Count == 0;
+                return Errors?.Count == 0;
             }
         }
 

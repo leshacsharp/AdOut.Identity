@@ -1,5 +1,5 @@
 ﻿using AdOut.Identity.Model.Api;
-using AdOut.Identity.Model.Model.Managers;
+using AdOut.Identity.Model.Classes;
 using System.Threading.Tasks;
 
 namespace AdOut.Identity.Model.Interfaces.Managers
