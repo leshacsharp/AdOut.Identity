@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AdOut.Identity.Model.Enums;
 using AdOut.Identity.Model.Interfaces.Managers;
+using IdentityServer4.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,21 +19,27 @@ namespace AdOut.Identity.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Customer")]
         [Route("add-role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public async Task<IActionResult> AddRole(string fromUserId, string toUserId, Role role)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> AddRole(string toUserId, Role role)
         {
+            var fromUserId = User.Identity.GetSubjectId();
             await _userManager.AddRoleAsync(fromUserId, toUserId, role);
             return NoContent();
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin,Customer")]
         [Route("remove-role")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public async Task<IActionResult> RemoveRole(string fromUserId, string toUserId, Role role)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> RemoveRole(string toUserId, Role role)
         {
+            var fromUserId = User.Identity.GetSubjectId();
             await _userManager.RemoveRoleAsync(fromUserId, toUserId, role);
             return NoContent(); 
         }
