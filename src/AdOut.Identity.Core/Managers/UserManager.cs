@@ -38,7 +38,9 @@ namespace AdOut.Identity.Core.Managers
 
             var toUser = await _identityUserManager.FindByIdAsync(toUserId);
             if (toUser == null)
+            {
                 throw new ObjectNotFoundException($"User with id={toUserId} not found");
+            }
 
             var addedRoleName = addedRole.ToString();
             await _identityUserManager.AddToRoleAsync(toUser, addedRoleName);
@@ -55,7 +57,9 @@ namespace AdOut.Identity.Core.Managers
 
             var toUser = await _identityUserManager.FindByIdAsync(toUserId);
             if (toUser == null)
+            {
                 throw new ObjectNotFoundException($"User with id={toUserId} not found");
+            }
 
             var removedRoleName = removedRole.ToString();
             await _identityUserManager.RemoveFromRoleAsync(toUser, removedRoleName);
@@ -65,7 +69,9 @@ namespace AdOut.Identity.Core.Managers
         {
             var user = await _identityUserManager.FindByIdAsync(userId);
             if (user == null)
+            {
                 throw new ObjectNotFoundException($"User with id={userId} not found");
+            }
 
             var userRolesNames = await _identityUserManager.GetRolesAsync(user);
             var userRoles = userRolesNames.ToEnum<Model.Enums.Role>();

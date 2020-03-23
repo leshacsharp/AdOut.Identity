@@ -26,7 +26,9 @@ namespace AdOut.Identity.Core.Claims
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
             if (user == null)
+            {
                 throw new ArgumentNullException(nameof(user));
+            }
 
             var claimsPrinciple = await base.CreateAsync(user);
             var claimsIdentity = (ClaimsIdentity)claimsPrinciple.Identity;

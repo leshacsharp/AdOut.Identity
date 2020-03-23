@@ -24,7 +24,9 @@ namespace AdOut.Identity.Core.Managers
         public async Task<AuthResult> RegisterAsync(RegistrationModel registrationModel)
         {
             if (registrationModel == null)
+            {
                 throw new ArgumentNullException(nameof(registrationModel));
+            }
             
             var authResult = new AuthResult();
 
@@ -43,7 +45,7 @@ namespace AdOut.Identity.Core.Managers
             };
     
             var creatingUserResult = await _userManager.CreateAsync(newUser, registrationModel.Password);
-            if(!creatingUserResult.Succeeded)
+            if (!creatingUserResult.Succeeded)
             {
                 var errorMessages = creatingUserResult.Errors.Select(error => error.Description);
                 authResult.Errors.AddRange(errorMessages);
@@ -52,7 +54,7 @@ namespace AdOut.Identity.Core.Managers
 
             var roleName = registrationModel.Role.ToString();
             var addingRoleResult = await _userManager.AddToRoleAsync(newUser, roleName);
-            if(!addingRoleResult.Succeeded)
+            if (!addingRoleResult.Succeeded)
             {
                 var errorMessages = addingRoleResult.Errors.Select(error => error.Description);
                 authResult.Errors.AddRange(errorMessages);
@@ -70,7 +72,7 @@ namespace AdOut.Identity.Core.Managers
             var authResult = new AuthResult();
 
             var signInResult = await _signInManager.PasswordSignInAsync(logInModel.UserName, logInModel.Password, logInModel.Remember, true);
-            if(!signInResult.Succeeded)
+            if (!signInResult.Succeeded)
             {
                 authResult.Errors.Add(Messages.USER_INVALID);
             }
