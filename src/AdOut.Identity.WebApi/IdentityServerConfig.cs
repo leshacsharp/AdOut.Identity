@@ -22,7 +22,7 @@ namespace AdOut.Identity.WebApi
         public static IEnumerable<ApiResource> Apis =>
         new List<ApiResource>
         {
-            
+            new ApiResource(ApisNames.Planning)
         };
 
         public static IEnumerable<Client> Clients =>
@@ -42,7 +42,8 @@ namespace AdOut.Identity.WebApi
                 {
                      IdentityServerConstants.StandardScopes.OpenId,
                      IdentityServerConstants.StandardScopes.Profile,
-                     IdentityResourcesNames.Postition
+                     IdentityResourcesNames.Postition,
+                     ApisNames.Planning
                 },
                 AlwaysIncludeUserClaimsInIdToken = true,
                 RedirectUris = { "http://localhost:5001/signin-oidc" }

@@ -19,6 +19,11 @@ namespace AdOut.Identity.Model
             public const string Postition = "position";
         }
 
+        public static class ApisNames
+        {
+            public const string Planning = "AdOut.Planning";
+        }
+
         public static class ClaimsTypes
         {
             public const string Role = "role";
