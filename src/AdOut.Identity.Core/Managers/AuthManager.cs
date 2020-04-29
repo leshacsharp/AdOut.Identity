@@ -67,7 +67,9 @@ namespace AdOut.Identity.Core.Managers
         public async Task<AuthResult> LogInAsync(LogInModel logInModel)
         {
             if (logInModel == null)
+            {
                 throw new ArgumentNullException(nameof(logInModel));
+            }
 
             var authResult = new AuthResult();
 

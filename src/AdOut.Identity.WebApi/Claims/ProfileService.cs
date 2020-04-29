@@ -26,7 +26,7 @@ namespace AdOut.Identity.WebApi.Claims
         {
             var userId = context.Subject.GetSubjectId();
             var user = await _userManager.FindByIdAsync(userId);
-
+            
             if (user == null)
             {
                 throw new ObjectNotFoundException($"User with id={userId} not found. \nCaller was {context.Caller} and Client was {context.Client.ClientName}");
