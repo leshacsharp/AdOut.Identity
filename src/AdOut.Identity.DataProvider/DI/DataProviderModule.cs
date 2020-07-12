@@ -12,7 +12,6 @@ namespace AdOut.Identity.DataProvider.DI
         {
             services.AddScoped<IDatabaseContext, IdentityContext>();
             services.AddScoped<IDatabaseSeeder, IdentitySeeder>();
-
             services.AddScoped<IPermissionRepository, PermissionRepository>();
         }
     }

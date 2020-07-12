@@ -8,7 +8,7 @@ namespace AdOut.Identity.Model.Classes
         {
             get
             {
-                return Errors?.Count == 0;
+                return Errors.Count == 0;
             }
         }
 

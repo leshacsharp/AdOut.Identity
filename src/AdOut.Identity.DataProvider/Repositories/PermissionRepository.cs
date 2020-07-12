@@ -13,7 +13,6 @@ namespace AdOut.Identity.DataProvider.Repositories
         public PermissionRepository(IDatabaseContext context)
             : base(context)
         {
-
         }
 
         public Task<List<string>> GetByUserAsync(string userId)
@@ -22,7 +21,7 @@ namespace AdOut.Identity.DataProvider.Repositories
                               join r in Context.Roles on ur.RoleId equals r.Id
                               join rp in Context.RolePermissions on r.Id equals rp.RoleId
                               join p in Context.Permissions on rp.PermissionId equals p.Id
-                              where ur.UserId == userId
+                              where ur.UserId == userId                         
                               select p.Name;
 
             return permissions.Distinct().ToListAsync();

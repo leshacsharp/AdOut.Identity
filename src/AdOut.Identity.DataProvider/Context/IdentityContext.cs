@@ -20,11 +20,9 @@ namespace AdOut.Identity.DataProvider.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<RolePermission>().HasKey(table => new { table.RoleId, table.PermissionId });
+
             _databaseSeeder.Seed(builder);
-
-            builder.Entity<RolePermission>()
-                   .HasKey(table => new { table.RoleId, table.PermissionId });
-
             base.OnModelCreating(builder);
         }
     }

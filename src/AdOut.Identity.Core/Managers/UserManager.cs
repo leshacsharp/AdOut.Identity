@@ -42,8 +42,7 @@ namespace AdOut.Identity.Core.Managers
                 throw new ObjectNotFoundException($"User with id={toUserId} not found");
             }
 
-            var addedRoleName = addedRole.ToString();
-            await _identityUserManager.AddToRoleAsync(toUser, addedRoleName);
+            await _identityUserManager.AddToRoleAsync(toUser, addedRole.ToString());
         }
 
         public async Task RemoveRoleAsync(string fromUserId, string toUserId, Model.Enums.Role removedRole)
@@ -61,8 +60,7 @@ namespace AdOut.Identity.Core.Managers
                 throw new ObjectNotFoundException($"User with id={toUserId} not found");
             }
 
-            var removedRoleName = removedRole.ToString();
-            await _identityUserManager.RemoveFromRoleAsync(toUser, removedRoleName);
+            await _identityUserManager.RemoveFromRoleAsync(toUser, removedRole.ToString());
         }
 
         private async Task<bool> HavePermissionForOperationsOverRole(string userId, Model.Enums.Role role)
@@ -75,9 +73,7 @@ namespace AdOut.Identity.Core.Managers
 
             var userRolesNames = await _identityUserManager.GetRolesAsync(user);
             var userRoles = userRolesNames.ToEnum<Model.Enums.Role>();
-
-            var permissions = Permissions.PERMISSIONS_FOR_OPERATIONS_OVER_ROLE;
-            var userHavePermission = userRoles.Any(sr => permissions[sr].Contains(role));
+            var userHavePermission = userRoles.Any(ur => Permissions.PERMISSIONS_FOR_OPERATIONS_OVER_ROLE[ur].Contains(role));
             return userHavePermission;
         }
     }
