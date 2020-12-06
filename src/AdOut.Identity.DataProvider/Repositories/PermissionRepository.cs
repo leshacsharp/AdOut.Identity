@@ -17,11 +17,10 @@ namespace AdOut.Identity.DataProvider.Repositories
 
         public Task<List<string>> GetByUserAsync(string userId)
         {
-            var permissions = from ur in Context.UserRoles
+            var permissions = from ur in Context.UserRoles.Where(ur => ur.UserId == userId)
                               join r in Context.Roles on ur.RoleId equals r.Id
                               join rp in Context.RolePermissions on r.Id equals rp.RoleId
-                              join p in Context.Permissions on rp.PermissionId equals p.Id
-                              where ur.UserId == userId                         
+                              join p in Context.Permissions on rp.PermissionId equals p.Id                        
                               select p.Name;
 
             return permissions.Distinct().ToListAsync();
@@ -29,9 +28,8 @@ namespace AdOut.Identity.DataProvider.Repositories
 
         public Task<List<string>> GetByRoleAsync(string roleId)
         {
-            var permissions = from rp in Context.RolePermissions
+            var permissions = from rp in Context.RolePermissions.Where(rp=> rp.RoleId == roleId)
                               join p in Context.Permissions on rp.PermissionId equals p.Id
-                              where rp.RoleId == roleId
                               select p.Name;
                              
             return permissions.Distinct().ToListAsync();

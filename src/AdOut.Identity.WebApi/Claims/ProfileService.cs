@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace AdOut.Identity.WebApi.Claims
 {
+    //todo: move to the Core module
     public class ProfileService : IProfileService
     {
         private readonly IUserManager _userManager;
