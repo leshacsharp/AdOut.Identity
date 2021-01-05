@@ -1,5 +1,5 @@
-﻿using AdOut.Identity.Model.Database;
-using AdOut.Identity.Model.Exceptions;
+﻿using AdOut.Extensions.Exceptions;
+using AdOut.Identity.Model.Database;
 using AdOut.Identity.Model.Interfaces.Managers;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -9,15 +9,16 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdOut.Identity.WebApi.Claims
+namespace AdOut.Identity.Core.Services
 {
-    //todo: move to the Core module
     public class ProfileService : IProfileService
     {
         private readonly IUserManager _userManager;
         private readonly IUserClaimsPrincipalFactory<User> _userClaimsFactory;
 
-        public ProfileService(IUserManager userManager, IUserClaimsPrincipalFactory<User> userClaimsFactory)
+        public ProfileService(
+            IUserManager userManager, 
+            IUserClaimsPrincipalFactory<User> userClaimsFactory)
         {
             _userManager = userManager;
             _userClaimsFactory = userClaimsFactory;
@@ -30,7 +31,7 @@ namespace AdOut.Identity.WebApi.Claims
             
             if (user == null)
             {
-                throw new ObjectNotFoundException($"User with id={userId} not found. \nCaller was {context.Caller} and Client was {context.Client.ClientName}");
+                throw new ObjectNotFoundException($"User with id={userId} was not found. \nCaller was {context.Caller} and Client was {context.Client.ClientName}");
             }
 
             var claimsPrinciple = await _userClaimsFactory.CreateAsync(user);

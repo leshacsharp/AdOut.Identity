@@ -72,8 +72,8 @@ namespace AdOut.Identity.Core.Managers
             }
 
             var authResult = new AuthResult();
-
             var signInResult = await _signInManager.PasswordSignInAsync(logInModel.UserName, logInModel.Password, logInModel.Remember, true);
+
             if (!signInResult.Succeeded)
             {
                 authResult.Errors.Add(Messages.USER_INVALID);

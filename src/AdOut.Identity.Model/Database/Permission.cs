@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using AdOut.Extensions.Repositories;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdOut.Identity.Model.Database
 {
     [Table("Permissions")]
-    public class Permission
+    public class Permission : PersistentEntity
     {
         [Key]
         public int Id { get; set; }

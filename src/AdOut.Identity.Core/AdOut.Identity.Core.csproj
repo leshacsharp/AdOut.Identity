@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdOut.Identity.Common\AdOut.Identity.Common.csproj" />
     <ProjectReference Include="..\AdOut.Identity.DataProvider\AdOut.Identity.DataProvider.csproj" />
     <ProjectReference Include="..\AdOut.Identity.Model\AdOut.Identity.Model.csproj" />
   </ItemGroup>

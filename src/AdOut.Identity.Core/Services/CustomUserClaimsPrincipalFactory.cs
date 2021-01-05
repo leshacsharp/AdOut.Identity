@@ -8,7 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace AdOut.Identity.Core.Claims
+namespace AdOut.Identity.Core.Services
 {
     public class CustomUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<User, Role>
     {
@@ -35,7 +35,6 @@ namespace AdOut.Identity.Core.Claims
 
             var permissions = await _permissionRepository.GetByUserAsync(user.Id);
             var permissionClaims = permissions.Select(p => new Claim(Constants.ClaimsTypes.Permission, p));
-
             claimsIdentity.AddClaims(permissionClaims);
 
             return claimsPrinciple;

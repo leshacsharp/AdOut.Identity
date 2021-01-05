@@ -1,4 +1,5 @@
-﻿using AdOut.Identity.Model.Database;
+﻿using AdOut.Extensions.Repositories;
+using AdOut.Identity.Model.Database;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

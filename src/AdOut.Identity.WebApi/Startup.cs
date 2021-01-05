@@ -1,7 +1,8 @@
-using AdOut.Identity.Core.DI;
-using AdOut.Identity.DataProvider.DI;
+using AdOut.Extensions.Filters;
+using AdOut.Identity.Core.Services;
 using AdOut.Identity.DataProvider.Context;
 using AdOut.Identity.Model.Database;
+using AdOut.Identity.WebApi.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using AdOut.Identity.WebApi.Claims;
-using AdOut.Identity.WebApi.Filters;
 
 namespace AdOut.Identity.WebApi
 {
@@ -25,13 +24,18 @@ namespace AdOut.Identity.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => 
+            //services.AddMvc(options => 
+            //{
+            //    options.EnableEndpointRouting = false;
+            //    options.Filters.Add(typeof(ExceptionFilterAttribute));
+            //});
+            //services.AddControllers();
+
+            services.AddControllersWithViews(options => 
             {
-                options.EnableEndpointRouting = false;
-                options.Filters.Add(typeof(ExceptionFilterAttribute));
+                options.Filters.Add<ExceptionFilterAttribute>();
             });
-            services.AddControllers();
-            
+
             //todo: make Different connections for dev and prod configurations
             services.AddDbContext<IdentityContext>(options => 
                      options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
@@ -43,9 +47,9 @@ namespace AdOut.Identity.WebApi
                 setup.Password.RequireNonAlphanumeric = false;
             })
             .AddEntityFrameworkStores<IdentityContext>();
-           
-            services.AddDataProviderModule();
-            services.AddCoreModule();
+
+            services.AddDataProviderServices();
+            services.AddCoreServices();
 
             var identityServerBuilder = services.AddIdentityServer(options => options.UserInteraction.LoginUrl = "/auth/login")
                 .AddInMemoryIdentityResources(IdentityServerConfig.Ids)
@@ -69,11 +73,11 @@ namespace AdOut.Identity.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseIdentityServer();
-            app.UseAuthorization();
+            //app.UseIdentityServer();
+            //app.UseAuthorization();
 
             app.UseSwagger();
             app.UseSwaggerUI(setup =>
@@ -81,11 +85,13 @@ namespace AdOut.Identity.WebApi
                 setup.SwaggerEndpoint("/swagger/v1/swagger.json", "AdOut.Identity API V1");
             });
 
-            app.UseMvc(routes =>
+            app.UseIdentityServer();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

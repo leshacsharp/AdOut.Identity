@@ -13,7 +13,8 @@ namespace AdOut.Identity.DataProvider.Context
             var testPermission = new Permission()
             {
                 Id = 1,
-                Name = "test permission"
+                Name = "test permission",
+                Creator = "system"
             };
             builder.Entity<Permission>().HasData(testPermission);
 

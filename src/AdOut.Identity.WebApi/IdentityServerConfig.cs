@@ -33,8 +33,11 @@ namespace AdOut.Identity.WebApi
             {
                 ClientId = "mvc",
                 AllowedGrantTypes = GrantTypes.Code,
+                //AllowedGrantTypes = GrantTypes.Implicit,
                 RequireConsent = false,
-                RequirePkce = true,
+                AllowAccessTokensViaBrowser = true,
+             
+               // RequirePkce = true,
                 ClientSecrets =
                 {
                     new Secret("secret".Sha256())
@@ -48,7 +51,8 @@ namespace AdOut.Identity.WebApi
                      ApisNames.Point,
                 },
                 AlwaysIncludeUserClaimsInIdToken = true,
-                RedirectUris = { "http://localhost:5001/signin-oidc" }
+                RedirectUris = { "https://localhost:44300/signin-oidc", "https://oauth.pstmn.io/v1/callback" }
+                //RedirectUris = { "http://localhost:5001/signin-oidc" }
             },
         };
     }

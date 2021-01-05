@@ -1,10 +1,10 @@
-﻿using AdOut.Identity.Model.Database;
-using AdOut.Identity.Model.Exceptions;
+﻿using AdOut.Extensions.Exceptions;
+using AdOut.Identity.Core.Helpers;
+using AdOut.Identity.Model.Database;
 using AdOut.Identity.Model.Interfaces.Managers;
 using Microsoft.AspNetCore.Identity;
-using AdOut.Identity.Common.Helpers;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 using static AdOut.Identity.Model.Constants;
 
 namespace AdOut.Identity.Core.Managers

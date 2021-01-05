@@ -1,7 +1,7 @@
-﻿using AdOut.Identity.Model.Api;
+﻿using AdOut.Extensions.Filters;
+using AdOut.Identity.Model.Api;
 using AdOut.Identity.Model.Classes;
 using AdOut.Identity.Model.Interfaces.Managers;
-using AdOut.Identity.WebApi.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

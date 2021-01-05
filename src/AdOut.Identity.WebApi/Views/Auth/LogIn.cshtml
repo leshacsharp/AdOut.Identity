@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.BeginForm("LogIn", "Auth", FormMethod.Post)
+@using (Html.BeginForm("LogIn", "Auth", FormMethod.Post))
 {
     <div class="login-page">
         @Html.HiddenFor(m => m.ReturnUrl)
