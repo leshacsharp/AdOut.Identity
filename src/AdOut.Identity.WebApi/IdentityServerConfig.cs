@@ -54,6 +54,39 @@ namespace AdOut.Identity.WebApi
                 RedirectUris = { "https://localhost:44300/signin-oidc", "https://oauth.pstmn.io/v1/callback" }
                 //RedirectUris = { "http://localhost:5001/signin-oidc" }
             },
+            new Client
+            {
+                ClientId = "test-client-credentials",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets =
+                {
+                    new Secret("client-credentials-secret".Sha256())
+                },
+                AllowedScopes =
+                {
+                     IdentityServerConstants.StandardScopes.OpenId,
+                     IdentityServerConstants.StandardScopes.Profile,
+                     IdentityResourcesNames.Postition,
+                     ApisNames.Planning,
+                     ApisNames.Point,
+                }       
+            },
+            new Client
+            {
+                ClientId = "js",
+                AllowedGrantTypes = GrantTypes.Implicit,
+                RedirectUris = { "http://localhost:3000/signin-oidc", "https://oauth.pstmn.io/v1/callback" },
+                AllowAccessTokensViaBrowser = true,
+                RequireConsent = false,
+                AllowedScopes =
+                {
+                     IdentityServerConstants.StandardScopes.OpenId,
+                     IdentityServerConstants.StandardScopes.Profile,
+                     IdentityResourcesNames.Postition,
+                     ApisNames.Planning,
+                     ApisNames.Point,
+                }
+            }
         };
     }
 }

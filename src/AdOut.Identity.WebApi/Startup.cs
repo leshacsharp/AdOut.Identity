@@ -64,6 +64,16 @@ namespace AdOut.Identity.WebApi
             {
                 setup.SwaggerDoc("v1", new OpenApiInfo { Title = "AdOut.Identity API", Version = "v1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(b =>
+                {
+                    b.WithOrigins("http://localhost:3000");
+                    b.AllowAnyMethod();
+                    b.AllowAnyHeader();
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -72,6 +82,8 @@ namespace AdOut.Identity.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
            // app.UseHttpsRedirection();
             app.UseRouting();
